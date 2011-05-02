@@ -15,8 +15,12 @@ log = logging.getLogger(__name__)
 class UserManagement(base.Handler):
     @action(name="get_users", renderer="json")
     def get_users(self):
-        offset = self.request.GET["offset"]
-        size = self.request.GET["size"]
+        if self.request.matchdict.get("pathparams"):
+            offset, size = map(int, self.request.matchdict["pathparams"])
+        else:
+            offset = self.request.GET["offset"]
+            size = self.request.GET["size"]
+
         db_session = get_session()
         q = db_session.query(model.DKUser).offset(offset).limit(size)
         l = [(u.username, u.master_email) for u in q.all()]

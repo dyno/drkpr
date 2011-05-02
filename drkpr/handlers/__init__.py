@@ -14,5 +14,5 @@ def includeme(config):
 
     config.add_handler("auth", "/auth/{action}", "drkpr.handlers.auth.Auth")
 
-    config.add_handler("um", "/um/{action}", "drkpr.handlers.um.UserManagement")
+    config.add_handler("um", r"/um/{action}*pathparams", "drkpr.handlers.um.UserManagement")
 

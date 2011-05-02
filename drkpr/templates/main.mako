@@ -262,7 +262,7 @@ YUI({
     });
 
     var um_data = new Y.DataSource.IO({
-	source: "${url.route('um', action='get_users')}"
+	source: "${url.route('um', action='get_users', pathparams=[])}",
     });
     um_data.plug(Y.Plugin.DataSourceJSONSchema, {
         schema: {
@@ -297,13 +297,15 @@ YUI({
 		var newState = event.state;
 		var page = newState.page;
 		var rowsPerPage = newState.rowsPerPage;
-		um_table.datasource.load({request: "?offset=" + (page - 1) * rowsPerPage + "&size=" + rowsPerPage});
+		//um_table.datasource.load({request: "?offset=" + (page - 1) * rowsPerPage + "&size=" + rowsPerPage});
+		um_table.datasource.load({request: "/" + (page - 1) * rowsPerPage + "/" + rowsPerPage});
 
 		instance.setState(newState);
 	    }
 	}
     });
-    Y.io("${url('um', action='get_user_count')}", {
+
+    Y.io("${url.route('um', action='get_user_count', pathparams=[])}", {
 	on: {
 	    success: function(id, o, args) {
 		r = Y.JSON.parse(o.responseText);
