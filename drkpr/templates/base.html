@@ -1,0 +1,28 @@
+## base.html
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+<link rel="stylesheet" type="text/css" href="${request.application_url}/static/yui3/cssreset/reset-min.css">
+<link rel="stylesheet" type="text/css" href="${request.application_url}/static/yui3/cssbase/base-min.css">
+<link rel="stylesheet" type="text/css" href="${request.application_url}/static/yui3/cssfonts/fonts-min.css">
+<link rel="stylesheet" type="text/css" href="${request.application_url}/static/yui3/cssgrids/grids-min.css">
+<link rel="stylesheet" type="text/css" href="${request.application_url}/static/yui3-gallery/gallery-aui-skin-classic/css/gallery-aui-skin-classic-min.css">
+<link rel="stylesheet" type="text/css" href="${request.application_url}/static/stylesheets/doorkeeper.css">
+</head>
+
+<body class="yui3-skin-sam">
+    <div class="yui3-u-1" id="header">
+	<h1> &nbsp; </h1>
+    </div>
+
+    ${self.body()}
+
+    <div class="yui3-u-1" id="footer">
+	${_("Copyright 2011, cpksecurity.com. All Rights Reserved.")}
+    </div>
+</body>
+
+</html>
+

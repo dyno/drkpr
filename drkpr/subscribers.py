@@ -1,6 +1,7 @@
 from akhet.urlgenerator import URLGenerator
 import pyramid.threadlocal as threadlocal
 from pyramid.exceptions import ConfigurationError
+from pyramid.i18n import get_localizer, TranslationStringFactory
 
 import drkpr.lib.helpers as helpers
 
@@ -13,7 +14,7 @@ def create_url_generator(event):
     context = request.context
     url_generator = URLGenerator(context, request, qualified=False)
     request.url_generator = url_generator
-    
+
 
 def add_renderer_globals(event):
     """A subscriber for ``pyramid.events.BeforeRender`` events.  I update
@@ -34,4 +35,17 @@ def add_renderer_globals(event):
         pass
     renderer_globals["url"] = request.url_generator
 
+    renderer_globals["_"] = request.translate
+    renderer_globals['localizer'] = request.localizer
+
+
+tsf = TranslationStringFactory("en")
+
+def add_localizer(event):
+    request = event.request
+    localizer = get_localizer(request)
+    def auto_translate(string):
+        return localizer.translate(tsf(string))
+    request.localizer = localizer
+    request.translate = auto_translate
 

@@ -1,27 +1,30 @@
 import logging
+import sys, os.path
 
 from pyramid_handlers import action
+from pyramid.httpexceptions import HTTPFound
 
 import drkpr.handlers.base as base
 import drkpr.models as model
+import drkpr.models.cpk as cpk
 
 log = logging.getLogger(__name__)
 
 class Main(base.Handler):
-    @action(renderer="index.html")
+    @action(renderer="main.mako")
     def index(self):
-        # Do some logging.
-        log.debug("testing logging; entered Main.index()")
+        log.debug("main.Main.index():")
 
-        # Push a flash message if query param 'flash' is non-empty.
-        if self.request.params.get("flash"):
-            import random
-            num = random.randint(0, 999999)
-            message = "Random number of the day is:  %s." % num
-            self.request.session.flash(message)
-            # Normally you'd redirect at this point but we have nothing to
-            # redirect to.
+        if not self.request.session.get("user"):
+            return HTTPFound(location=self.request.route_path("auth", action="display"))
 
         # Return a dict of template variables for the renderer.
         return {"project":"drkpr"}
-        
+
+    @action(name="gen_master_key", renderer="json")
+    def gen_master_key(self):
+        if not self.request.session.get("user"):
+            raise Exception("not logged in!")
+
+        return cpk.gen_master_key()
+

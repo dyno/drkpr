@@ -1,0 +1,64 @@
+1.	Cai
+2.	Chen
+3.	Gao
+4.	Huang
+5.	Li
+6.	Lin
+7.	Liu
+8.	Ma
+9.	Wang
+10.	Wu
+11.	Yang
+12.	Zhang
+1.	Cao
+2.	Cui
+3.	Deng
+4.	Ding
+5.	Fan
+6.	Guo
+7.	Hu
+8.	Jiang
+9.	Jin [this is actually the Korean name Kim in the Chinese reading]
+10.	Ke
+11.	Kong [Note: this is Confucius' surname]
+12.	Lan
+13.	Lei
+14.	Lian
+15.	Liang
+16.	Lu
+#17.	Lü
+18.	Luo
+19.	Mao [This is Mao Zadong's surname]
+20.	Mo
+21.	Ni [this is my Chinese surname, and also the surname of Taiwan's only famous SF author]
+22.	Ouyang [one of the few bisyllabic Chinese surnames]
+23.	Qi
+24.	Qin
+25.	Qiu
+26.	Peng
+27.	She
+28.	Shen
+29.	Shu
+30.	Sima [one of the few bisyllabic Chinese surnames]
+31.	Song
+32.	Tan
+33.	Tang
+34.	Tao
+35.	Tu
+36.	Wei
+37.	Wen
+38.	Weng
+39.	Xia
+40.	Xiao
+41.	Xu
+42.	Yao
+43.	Yi
+44.	Yin
+45.	Yu
+46.	Zeng
+46.	Zhao
+47.	Zheng
+48.	Zhou
+49.	Zhu
+50.	Zou
+

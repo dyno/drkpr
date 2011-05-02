@@ -32,12 +32,17 @@ def main(global_config, **settings):
     config.set_session_factory(session_factory)
     pyramid_beaker.set_cache_regions_from_settings(settings)
 
+    # Configure Babel
+    config.add_translation_dirs("drkpr:locale")
+
     # Configure renderers and event subscribers
     config.add_renderer(".html", "pyramid.mako_templating.renderer_factory")
     config.add_subscriber("drkpr.subscribers.create_url_generator",
         "pyramid.events.ContextFound")
     config.add_subscriber("drkpr.subscribers.add_renderer_globals",
                           "pyramid.events.BeforeRender")
+    config.add_subscriber('drkpr.subscribers.add_localizer',
+                          'pyramid.events.NewRequest')
 
     # Set up view handlers
     config.include("drkpr.handlers")
@@ -61,10 +66,11 @@ def main(global_config, **settings):
     # ** third-party packages, or point to an external HTTP server (a static
     # ** media server).
     # ** The first commented example serves URLs under "/static" from the
-    # ** "drkpr/static" directory. The second serves URLs under 
+    # ** "drkpr/static" directory. The second serves URLs under
     # ** "/deform" from the third-party ``deform`` distribution.
     #
-    #config.add_static_view("static", "drkpr:static")
+    config.add_static_view("static", "drkpr:static")
     #config.add_static_view("deform", "deform:static")
 
     return config.make_wsgi_app()
+

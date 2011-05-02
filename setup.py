@@ -9,20 +9,22 @@ CHANGES = open(os.path.join(here, "CHANGES.txt")).read()
 
 requires = [
     "Akhet",
+    "Babel",
+    "SQLAHelper",
+    "SQLAlchemy",
+    "WebError",
     "pyramid>=1.0a10",
     "pyramid_beaker",
     "pyramid_handlers",
     "pyramid_tm",
-    "SQLAHelper",
-    "SQLAlchemy",
     "transaction",
-    "WebError",
+    "webhelpers",
     "zope.sqlalchemy",
 ]
 
 if sys.version_info[:3] < (2,5,0):
    requires.append("pysqlite")
-    
+
 
 entry_points = """\
     [paste.app_factory]
@@ -42,9 +44,9 @@ setup(name="drkpr",
         "Topic :: Internet :: WWW/HTTP",
         "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
         ],
-      author="",
-      author_email="",
-      url="",
+      author="Dyno (Hongjun) Fu",
+      author_email="dyno.fu@gmail.com",
+      url="www.cpksecurity.com",
       keywords="web pyramid pylons",
       packages=find_packages(),
       include_package_data=True,
@@ -54,5 +56,11 @@ setup(name="drkpr",
       test_suite="drkpr",
       entry_points=entry_points,
       paster_plugins=["pyramid"],
+      #Babel
+      package_data={'drkpr': ['locale/*/LC_MESSAGES/*.mo']},
+      message_extractors={'drkpr': [
+            ('**.py', 'python', None),
+            ('templates/**.mako', 'mako', {'input_encoding': 'utf-8'}),
+            ('static/**', 'ignore', None)]},
       )
 
